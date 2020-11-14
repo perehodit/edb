@@ -3,6 +3,7 @@ import router from './router/index.js';
 import middlewares from './middlewares/index.js';
 import config from './config.js';
 import mongoose from 'mongoose';
+import fs from 'fs';
 
 class App {
   constructor(config, router, middlewares) {
@@ -29,6 +30,16 @@ class App {
     });
   }
 
+  checkUploadFolders() {
+    const dirs = ['./uploads'];
+
+    for (let dir of dirs) {
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+      }
+    }
+  }
+
   connectToDatabase() {
     mongoose
       .connect(this.config.mongoUri, {
@@ -36,11 +47,22 @@ class App {
         useUnifiedTopology: true,
         useCreateIndex: true,
       })
-      .then(() => console.log('MongoDB has been connected'))
+      .then(async () => {
+        console.log('MongoDB has been connected');
+        const adminIsExist = await User.findOne({ role: 'administrator' });
+        if (!adminIsExist) {
+          await new User({
+            username: 'root',
+            password: 'root',
+            role: 'administrator',
+          }).save();
+        }
+      })
       .catch(error => console.log(error.message));
   }
 
   start() {
+    this.checkUploadFolders();
     this.setupMiddlewares();
     this.setupRouter();
     this.startListening();
