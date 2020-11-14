@@ -4,6 +4,7 @@ import middlewares from './middlewares/index.js';
 import config from './config.js';
 import mongoose from 'mongoose';
 import fs from 'fs';
+import User from './models/User.js';
 
 class App {
   constructor(config, router, middlewares) {
