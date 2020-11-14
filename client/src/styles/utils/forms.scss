@@ -1,0 +1,132 @@
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__error {
+    font-size: 0.889em;
+    color: $error-color;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.form__body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  &__item {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.form__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: $primary-color;
+  color: $light-text-color;
+  transition: background 0.2s;
+  cursor: pointer;
+  padding: 10px 30px;
+
+  &:hover {
+    background: $secondary-color;
+  }
+
+  &:disabled {
+    background: $disabled-gray-color;
+    cursor: default;
+  }
+}
+
+textarea {
+  outline: none;
+  border-radius: 0;
+  width: auto;
+  resize: none;
+  border: 0px;
+  transition: border-bottom 0.2s;
+  border-bottom: 1px solid white;
+
+  &:focus {
+    border-bottom: 1px solid $secondary-color;
+  }
+}
+
+input,
+select {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid $dark-background-color;
+  padding: 10px 0px;
+  transition: border-bottom 0.2s;
+  border-radius: 0;
+
+  &:focus {
+    border-bottom: 1px solid $secondary-color;
+  }
+
+  &:disabled {
+    background: transparent;
+  }
+}
+
+a {
+  color: $primary-color;
+  transition: 0.2s;
+
+  text-decoration: none;
+
+  &:hover {
+    color: $secondary-color;
+    text-decoration: underline;
+  }
+
+  &.a-disabled {
+    pointer-events: none;
+    color: $disabled-gray-color;
+  }
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  display: none;
+}
+
+input[type='radio'] + label,
+input[type='checkbox'] + label {
+  cursor: pointer;
+}
+
+input[type='radio'] + label::before {
+  border-radius: 7px;
+}
+
+input[type='radio']:checked + label::before,
+input[type='checkbox']:checked + label::before {
+  background: rgba($primary-color, 0.7) !important;
+}
+
+input[type='radio']:disabled + label::before,
+input[type='checkbox']:disabled + label::before {
+  border: 1px solid $disabled-gray-color;
+  cursor: default;
+}
+
+input[type='radio'] + label::before,
+input[type='checkbox'] + label::before {
+  content: '';
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  margin: 0 5px 0 0;
+  margin-bottom: -2px;
+  border: 1px solid $dark-text-color;
+  background: transparent;
+}

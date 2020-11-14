@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "index.js"
+  },
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/router": "^9.4.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-static-server": "^1.5.2",
+    "mongoose": "^5.10.9",
+    "mongoose-fuzzy-searching": "^2.0.2",
+    "mongoose-private-paths": "^0.7.0",
+    "nodemon": "^2.0.5"
+  }
+}

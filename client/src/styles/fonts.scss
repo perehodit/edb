@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+@import './utils/colors.scss';
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1em;
+  line-height: 1.65em;
+  font-weight: 400;
+}
+
+input,
+select,
+textarea {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  margin: 2.75rem 0 1.05rem;
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 1.602em;
+  color: $primary-color;
+}
+
+h2 {
+  font-size: 1.424em;
+}
+
+h3 {
+  font-size: 1.266em;
+}
+
+h4 {
+  font-size: 1.125em;
+}
+
+p {
+  font-size: 1em;
+  margin-bottom: 1.15rem;
+  text-align: justify;
+
+  &:last-child {
+    margin-bottom: 2.75rem;
+  }
+}
+
+th,
+td {
+  font-size: 0.889em;
+}
+
+@media (max-width: 700px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  html {
+    font-size: 13px;
+  }
+}
