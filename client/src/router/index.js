@@ -7,6 +7,16 @@ import Contacts from '../views/Contacts';
 import Table from '../views/Table';
 import Card from '../views/Card';
 
+import AdminMain from '../views/admin/AdminMain';
+import AdminUsers from '../views/admin/AdminUsers';
+import AdminSlider from '../views/admin/AdminSlider';
+import AdminDatabase from '../views/admin/AdminDatabase';
+import AdminAddTable from '../views/admin/AdminAddTable';
+import AdminEditTable from '../views/admin/AdminEditTable';
+import AdminTable from '../views/admin/AdminTable';
+import AdminAddCard from '../views/admin/AdminAddCard';
+import AdminEditCard from '../views/admin/AdminEditCard';
+
 const routes = [
   {
     path: '/',
@@ -59,7 +69,7 @@ const routes = [
   {
     path: '/admin',
     name: 'AdminMain',
-    component: () => import('../views/admin/AdminMain'),
+    component: AdminMain,
     meta: {
       layout: 'AdminLayout',
     },
@@ -67,7 +77,7 @@ const routes = [
   {
     path: '/admin/users',
     name: 'AdminUsers',
-    component: () => import('../views/admin/AdminUsers'),
+    component: AdminUsers,
     meta: {
       layout: 'AdminLayout',
     },
@@ -75,7 +85,7 @@ const routes = [
   {
     path: '/admin/slider',
     name: 'AdminSlider',
-    component: () => import('../views/admin/AdminSlider'),
+    component: AdminSlider,
     meta: {
       layout: 'AdminLayout',
     },
@@ -83,7 +93,7 @@ const routes = [
   {
     path: '/admin/database',
     name: 'AdminDatabase',
-    component: () => import('../views/admin/AdminDatabase'),
+    component: AdminDatabase,
     meta: {
       layout: 'AdminLayout',
     },
@@ -91,7 +101,7 @@ const routes = [
   {
     path: '/admin/add-table',
     name: 'AdminAddTable',
-    component: () => import('../views/admin/AdminAddTable'),
+    component: AdminAddTable,
     meta: {
       layout: 'FullpageLayout',
     },
@@ -99,7 +109,7 @@ const routes = [
   {
     path: '/admin/edit-table/:id',
     name: 'AdminEditTable',
-    component: () => import('../views/admin/AdminEditTable'),
+    component: AdminEditTable,
     meta: {
       layout: 'FullpageLayout',
     },
@@ -107,7 +117,7 @@ const routes = [
   {
     path: '/admin/table/:id',
     name: 'AdminTable',
-    component: () => import('../views/admin/AdminTable'),
+    component: AdminTable,
     meta: {
       layout: 'FullpageLayout',
     },
@@ -115,7 +125,7 @@ const routes = [
   {
     path: '/admin/add-card/:id',
     name: 'AdminAddCard',
-    component: () => import('../views/admin/AdminAddCard'),
+    component: AdminAddCard,
     meta: {
       layout: 'FullpageLayout',
     },
@@ -123,7 +133,7 @@ const routes = [
   {
     path: '/admin/edit-card/:id',
     name: 'AdminEditCard',
-    component: () => import('../views/admin/AdminEditCard'),
+    component: AdminEditCard,
     meta: {
       layout: 'FullpageLayout',
     },
