@@ -16,10 +16,11 @@ tables.get('/', async ctx => {
   const { skip, limit, sort, search } = ctx.query;
 
   if (search) {
-    const totalCount = (await Table.fuzzySearch({ query: search, prefixOnly: true })).length;
+    const totalCount = (await Table.fuzzySearch({ query: search, exact: true, prefixOnly: true }))
+      .length;
     ctx.set('x-total-count', totalCount);
 
-    ctx.body = await Table.fuzzySearch({ query: search, prefixOnly: true })
+    ctx.body = await Table.fuzzySearch({ query: search, exact: true, prefixOnly: true })
       .sort(sort)
       .skip(+skip)
       .limit(+limit);

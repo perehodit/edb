@@ -44,7 +44,7 @@ cards.post(
       }
     });
 
-    const card = {
+    let card = {
       name,
       data,
       table,
@@ -79,6 +79,10 @@ cards.post(
       }
     }
 
+    card.data = card.data.filter(value => {
+      return value !== undefined;
+    });
+
     const addedCard = await new Card(card).save();
     ctx.body = { id: addedCard._id };
     ctx.status = 200;
@@ -90,12 +94,16 @@ cards.get('/', async ctx => {
 
   if (search) {
     const totalCount = (
-      await Card.find({ table: table }).fuzzySearch({ query: search, prefixOnly: true })
+      await Card.find({ table: table }).fuzzySearch({
+        query: search,
+        exact: true,
+        prefixOnly: true,
+      })
     ).length;
     ctx.set('x-total-count', totalCount);
 
     const result = await Card.find({ table: table })
-      .fuzzySearch({ query: search, prefixOnly: true })
+      .fuzzySearch({ query: search, exact: true, prefixOnly: true })
       .sort(sort)
       .skip(+skip)
       .limit(+limit);

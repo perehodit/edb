@@ -61,6 +61,7 @@ export default {
     const { getFileExt } = useFileExt();
     const logged = computed(() => store.state.auth.logged);
     const loading = ref(true);
+    const path = location.origin;
 
     function getCard() {
       api.get(`/cards/${route.params.id}`).then(result => {
@@ -100,6 +101,7 @@ export default {
       getFileExt,
       loading,
       logged,
+      path,
     };
   },
 };
