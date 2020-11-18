@@ -1,6 +1,7 @@
 import Router from '@koa/router';
 import Table from '../models/Table.js';
 import Card from '../models/Card.js';
+import textTranslit from 'cyrillic-to-translit-js';
 
 import ExcelJS from 'exceljs';
 const { Workbook } = ExcelJS;
@@ -16,7 +17,7 @@ excel.get('/', async ctx => {
 
   if (typeof cardsID === 'string') {
     cards = await Card.find({ _id: cardsID });
-  } else {
+  } else if (cardsID) {
     for (let _id of cardsID) {
       const card = await Card.findOne({ _id });
       cards.push(card);
@@ -26,7 +27,7 @@ excel.get('/', async ctx => {
   ctx.set({
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-    'Content-Disposition': `attachment; filename=${table.name.split(' ').join('_')}.xlsx`,
+    'Content-Disposition': `attachment; filename=${textTranslit().transform(table.name, '_')}.xlsx`,
   });
 
   try {
