@@ -27,6 +27,8 @@
         @add="$router.push(`/admin/add-card/${$route.params.id}`)"
         @delete="modals.delete = true"
         @edit="$router.push(`/admin/edit-card/${batches[0]}`)"
+        :download="true"
+        @download="downloadExcel"
       ></TableControl>
       <Loader v-if="load"></Loader>
       <Table
@@ -145,6 +147,16 @@ export default {
       }
     }
 
+    function downloadExcel() {
+      let url = `${location.origin}/api/excel?tableID=${route.params.id}`;
+      const IDs = [];
+      batches.value.forEach(cardID => {
+        IDs.push(cardID);
+      });
+      url += `&cardsID[]=${IDs.join('&cardsID[]=')}`;
+      window.open(url);
+    }
+
     function getWord() {
       return batches.value.length % 10 === 1 && batches.value.length < 10
         ? 'карточку'
@@ -165,6 +177,7 @@ export default {
       getFileExt,
       isFile,
       data,
+      downloadExcel,
       deleteCards,
       count,
       getWord,

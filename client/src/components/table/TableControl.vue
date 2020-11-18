@@ -8,7 +8,13 @@
     </div>
     <div class="table-control__right">
       <div class="table-control__right__icons">
-        <IconBase :height="14" :width="14" class="icon_button" v-if="download">
+        <IconBase
+          :height="14"
+          :width="14"
+          class="icon_button"
+          v-if="download"
+          @click="$emit('download')"
+        >
           <IconDownload></IconDownload>
         </IconBase>
         <div ref="sortBox" class="sort-box">

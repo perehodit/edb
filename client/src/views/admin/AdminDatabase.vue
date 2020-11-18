@@ -25,6 +25,8 @@
       @delete="modals.delete = true"
       :batchesCount="batches.length"
       @edit="$router.push(`/admin/edit-table/${batches[0]}`)"
+      :download="batches.length === 1"
+      @download="downloadExcel"
     ></TableControl>
     <TableControl
       v-if="role !== 'administrator'"
@@ -38,6 +40,8 @@
       :batchesCount="batches.length"
       :edit="false"
       :deleteIcon="false"
+      :download="batches.length === 1"
+      @download="downloadExcel"
     ></TableControl>
     <Loader v-if="load"></Loader>
     <Table v-show="!load" :batch="true" :batched="batched" @toggleBatches="toggleBatches">
@@ -120,6 +124,10 @@ export default {
         fetchData();
       });
     }
+    // http://localhost:8080/api/excel?tableID=5fafb9e1f96b7204f2943a06&cardsID[]=qweqwe&cardsID[]=qweqweqw
+    function downloadExcel() {
+      window.open(`${location.origin}/api/excel?tableID=${batches.value[0]}`);
+    }
 
     function getWord() {
       return batches.value.length % 10 === 1 && batches.value.length < 10
@@ -132,6 +140,7 @@ export default {
     return {
       data,
       load,
+      downloadExcel,
       fetchData,
       count,
       totalCount,
