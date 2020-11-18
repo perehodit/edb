@@ -22,6 +22,8 @@ excel.get('/', async ctx => {
       const card = await Card.findOne({ _id });
       cards.push(card);
     }
+  } else {
+    cards = await Card.find({ table: tableID });
   }
 
   ctx.set({
